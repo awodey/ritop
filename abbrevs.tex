@@ -1,0 +1,22 @@
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+\newcommand{\aka}{a.k.a\onedot}
+\newcommand{\ie}{i.e\onedot}
+\newcommand{\eg}{e.g\onedot}
+
+\newcommand{\prop}{{\mathsf{Prop}}}
+\newcommand{\itop}{$\infty$-topos\xspace}
+\newcommand{\rtop}{realizability topos\xspace}
+\newcommand{\ritop}{realizability $\infty$-topos\xspace}
+\newcommand{\tops}{topoi\xspace}
+\newcommand{\itops}{$\infty$-topoi\xspace}
+\newcommand{\rtops}{realizability topoi\xspace}
+\newcommand{\ritops}{realizability $\infty$-topoi\xspace}
+\newcommand{\rtrip}{realizability tripos\xspace}
+\newcommand{\rtrips}{realizability triposes\xspace}
+\newcommand{\rrtrip}{relative realizability tripos\xspace}
+\newcommand{\rrtrips}{relative realizability triposes\xspace}
+\newcommand{\foh}{first-order hyperdoctrine\xspace}
+\newcommand{\fohs}{first-order hyperdoctrines\xspace}
+\newcommand{\fmp}{finite-meet-preserving\xspace}

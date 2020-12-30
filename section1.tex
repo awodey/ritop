@@ -1,0 +1,193 @@
+\section{Assemblies}
+
+A \emph{($\catset$)-indexed poset} is a contravariant functor
+$\fifd:\setpos$ from the category of sets to the category $\catpos$ of
+posets and monotone maps. For $I\in\catset$, the poset
+$\fifd(I)$ is called the \emph{fiber} of $\fifd$ over $I$ and its elements are
+called \emph{predicates} on $I$. The monotone maps
+$\triq(f):\triq(I)\to\triq(J)$ for $f:J\to I$ are called \emph{reindexing maps}
+and are abbreviated $f^*$. The \emph{total category} (\aka \emph{Grothendieck
+construction}) of $\fifd$ is the category $\gcons\fifd$ whose objects are pairs
+$(I\in\catset,\varphi\in\fifd(I))$ and whose morphisms from $(I,\varphi)$ to
+$(J,\psi)$ are functions $f:I\to J$ satisfying $\varphi\leq f^*\psi$.
+The total category admits a forgetful functor $\gcons\fifd\to\catset$ which is a
+Grothendieck fibration.
+
+% Given indexed posets $\fifd$ and $\fifb$, an \emph{indexed monotone map}
+% is a natural transformation $\Phi:\fifd\to\fifb$.
+
+% An \emph{indexed meet-semilattice} is an indexed poset 
+% $\fifd:\setpos$ 
+% where all
+% fibers are meet-semilattices and all reindexing maps preserve finite
+% meets\footnote{This is equivalent to $\gcons\fifd$ having, and
+% $\gcons\fifd\to\catset$ preserving finite limits.}. An indexed monotone map
+% % $\Phi:\fifd\to\fifb:\setpos$ 
+% between \imsls is called \emph{cartesian} if it
+% preserves fiberwise finite meets. 
+% % If $\catc$ has 
+% % finite limits then $\Phi$ is cartesian \emph{iff} $\gcons\Phi$ preserves 
+% % finite products \emph{iff} $\gcons\Phi$ preserves finite limits.
+
+A \emph{first-order hyperdoctrine} is an indexed poset $\triq:\setpos$
+satisfying the following conditions.
+\begin{description}
+\item[(HA)\label{ax:ha}] All fibers $\triq(I)$ are {Heyting algebras}, and
+all reindexing map preserve Heyting algebra structure.
+    \item[(Q)\label{ax:q}] 
+All reindexing maps $f^*$  have left and right adjoints $\exists_f\adj f^*
+\adj \forall_f$, and we have 
+    $\exists_k\circ h^*= g^* \circ\exists_f$ and
+    $\forall_k\circ h^*= g^* \circ\forall_f$ for all $\catset$-pullbacks
+\begin{equation}
+\begin{tikzcd}
+        D\ar[r, "k" description]\ar[d,"h"'] & B\ar[d,"g"]\\
+        A\ar[r,"f" description] & C
+\end{tikzcd}.
+\end{equation}
+\end{description}
+A \emph{generic predicate}\footnote{Andrew used `weakly' recently, but in the
+realizability literature they are simply called `generic'.} in an indexed poset
+$\fifd$ is a predicate $\iota$ on a set $\prop$ such that for every set $I$ and
+predicate $\varphi\in\fifd(I)$ there exists a (not necessarily unique)
+$f:J\to\prop$ with $\varphi=f^*\iota$. In other words, a generic predicate is a
+weakly terminal object in the wide subcategory of $\gcons\fifd$ on cartesian
+maps. 
+
+\begin{definition}
+A \emph{tripos} is a \foh which admits a
+generic predicate.
+\end{definition}
+\begin{examples}
+\begin{enumerate}
+\item For every frame $A$, the indexed preorder
+\begin{equation}
+\trip_A :\setpos\qquad \trip_A(I)=(A^I,\text{pointwise ordering})
+\end{equation}
+We call such triposes
+\emph{localic}.
+\item 
+Given a frame $A$ and a filter $F\subs A$, we can define a `filter quotient'
+$\trip_A/F$ by setting $(\trip_A/F)(I)$ the poset-reflection of the 
+preorder $(A^I,\leq_F)$ where 
+$h\leq k:\Leftrightarrow\bigwedge_i(hi\Rightarrow ki)\in F$.
+Such filter quotients are generally not localic.
+\end{enumerate}
+\end{examples}
+
+
+
+An indexed monotone map $\Phi:\triq\to\triq$ between triposes is called
+\emph{regular}, if it preserves fiberwise finite meets and satisfies
+$\ex_f\circ\Phi_J=\Phi_I\circ\ex_f$ for all $f:J\to I$. Regular maps between
+localic triposes correspond uniquely to frame morphisms.
+
+A predicate $\varpi\in\triq(I)$ of a tripos is
+called \emph{weakly \eprime}, if for every function
+% $I\xleftarrow{u}J$ 
+$u: J \to I$ and every $\psi\in\triq(J)$ satisfying $\varpi\leq\exists_u\psi$,
+there exists a section $s$ of $u$ such that $\varpi\leq
+s^*\psi$\footnote{Equivalently, $\varpi$ is prime if $(I,\varpi)$ has the left
+lifting property with respect to all cocartesian maps in $\gcons\triq$}. A
+predicate is called \emph{\eprime}, if all of its reindexings are weakly
+\eprime. Since \eprime predicates are closed under reindexing by definition,
+they form a indexed sub-poset $\eprim(\triq)\subs\triq$.
+
+A predicate $\delta\in\triq(I)$ is called \emph{discrete}, if for every span
+$J\xepil{e}K\xrightarrow{f}I$ with $e$ surjective, and every $\varphi\in\fifd_J$
+such that $e^*\varphi\leq f^*\mu$, there exists a (necessarily unique) $h:J\to
+I$ such that $he=f$ and $\varphi\leq h^*\mu$. In other words, $\delta$ is
+discrete if $(I,\delta)$ is right orthogonal in $\gcons\triq$ to all cartesian
+maps over surjections. We call $(I,\delta)\in\gcons\triq$ a \emph{discrete
+object} whenever $\delta$ is a discrete predicate.
+
+\begin{definition} $ $
+\begin{enumerate}
+\item 
+A \emph{relative realizability tripos} is a first-order hyperdoctrine $\triq$
+such that 
+\begin{enumerate}
+\item $\eprim(\triq)$ is closed under finite meets in $\triq$, 
+\item $\eprim(\triq)$ admits a discrete generic predicate, and 
+\item for every $\varphi\in\triq(I)$ there exists a function $f:J\to
+I$ and an \eprime $\varpi\in\triq(J)$ with $\varphi=\ex_f\varpi$.
+\end{enumerate}
+\item A \emph{realizability tripos} is a relative realizability tripos $\triq$
+such that 
+$\eprim(\triq)(1)=1$.
+\end{enumerate}
+\end{definition}
+The terminology is justified by the following lemma.
+\begin{lemma}
+Every relative realizability tripos is a tripos.
+\end{lemma}
+\begin{proof}
+A generic predicate of $\triq$ is given by $\exists_q(p^* \iota)$, where 
+$\iota\in\eprim(\triq)(A)$ is a generic predicate of $\eprim(\triq)$, and 
+$\langle p,q\rangle:E\incl A\times PA$ is the membership relation between 
+$A$ and its powerset.
+\end{proof}
+The tripos $P:\setpos$ maps each set $I$ to its powerset $P(I)$ ordered by 
+inclusion.
+Every \foh $\triq$ admits \fmp indexed monotone maps
+\begin{align}
+\gamma&:\triq\to P &\gamma_I(\varphi)&=\setof{i\in I}{i^*\varphi=\top}
+\quad\text{and}\\
+\delta&: P \to\triq& \delta_I(U)&= \exists_{U\incl I}\top.
+\end{align}
+\begin{lemma}
+A tripos $\triq$ is localic iff $\delta$ is left adjoint to $\gamma$.
+\end{lemma}
+\begin{proof}
+Exercise.
+\end{proof}
+We call a \foh $\triq$ \emph{totally connected}, if $\delta:P\to\triq$ 
+has a \fmp left adjoint.
+\begin{lemma}
+For any totally connected \foh $\triq$, the indexed closure operator
+$\delta\circ\pi:\triq\to\triq$ coincides with double negation.
+\end{lemma}
+\begin{proof}
+\cite[3.4.34]{frey2013fibrational}.
+\end{proof}
+\begin{lemma}
+Relative \rtrips are totally connected.
+\end{lemma}
+\begin{proof}
+Let $\varphi\in\triq(I)$ and let $f:J\to I$ and $\varpi\in\eprim(\triq)(J)$ such
+that $\varphi = \exists_f\varpi$. Then $\pi_I(\varphi)=\image(f)$ (although $f$
+and $\varpi$ are not uniquely determined by $\varphi$ in general, $\image(f)$
+is). It is easy to see that this defines left adjoints $\pi_I$ to $\delta_I$ 
+for all sets $I$, and furthermore that the $\delta_I$ are natural in $I$.
+\end{proof}
+\begin{lemma}
+We have $\gamma\adj\delta$ for realizability triposes.
+\end{lemma}
+\begin{proof}
+By the previous lemma it is sufficient to show that $\pi=\gamma:\triq\to P$
+whenever $\eprim(\triq)(1)=1$. Let $\varphi\in\triq(I)$ and $i\in I$. We have
+$i\in \pi_I(\varphi)$ iff $\pi_1(i^i\varphi)=\top$ by pullback stability, and
+$i\in\gamma_I(\varphi)$ iff $i^*\varphi=\top$ by definition. Thus, it is enough
+to show that $\pi_1$ reflects $\top$. Assume that $\pi_1(\psi)=\top$. Then there
+exists a surjective $e:J\to 1$ and an \eprime $\varpi$ on $J$ such that
+$\exists_e\varpi=\psi$. For any section $s$ of $e$ we have $\psi =
+\exists_e\varpi \geq s^* \varpi = \top$, where the latter equation follows from
+$\eprim(\triq)(1)=1$.
+\end{proof}
+
+\begin{definition}
+Let $\triq$ be a totally connected tripos. The category $\catasm(\triq)$ is 
+defined to be the full subcategory of $\gcons\triq$ on objects $(I,\varphi)$
+such that $\varphi$ is dense for the indexed closure operator 
+$\delta\circ\pi:\triq\to\triq$.
+\end{definition}
+
+
+TODO: 
+\begin{itemize}
+\item $\catasm$ as a subcategory of the topos
+\item $\catasm$ is a quasitopos with a generic mono
+\item next problem: how to describe internal simplex/cube category? do we want 
+to allow ourselves extensional type theory as internal language of asm?
+\item further: internal presheaves
+\end{itemize}

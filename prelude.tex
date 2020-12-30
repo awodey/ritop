@@ -1,0 +1,153 @@
+\documentclass[a4paper]{article}
+
+% without this the bib file doesn't work
+\usepackage[utf8]{inputenc}
+
+% used for colorful comments
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{amsmath,amssymb}
+\numberwithin{equation}{section}
+
+% math fonts (include mathfonts.tex in main.tex to see all)
+\DeclareSymbolFont{bbold}{U}{bbold}{m}{n}
+\DeclareSymbolFontAlphabet{\mathbbold}{bbold}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+
+\usepackage[amsmath,thmmarks]{ntheorem}
+% this is sometimes useful to get endmarks right when a proof ends with a display
+\usepackage[ntheorem]{empheq}
+
+% for strikethrough \sout{...}
+\usepackage[normalem]{ulem}
+
+% for commutative diagrams 
+% http://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+\usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,
+     		filecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n} % to avoid some warnings
+% \usepackage{wasysym}
+
+\usepackage{bussproofs}
+\EnableBpAbbreviations
+
+% \usepackage{extpfeil}
+
+\usepackage{mathtools}
+\mathtoolsset{
+showonlyrefs=true % makes that equation numbers only appear when referenced
+}
+
+\usepackage{array}
+\usepackage{tabularx}
+% \usepackage{enumitem}
+
+\usepackage{xspace}
+% from http://mirror.ox.ac.uk/sites/ctan.org/macros/latex/required/tools/xspace.pdf
+% to avoid removing spaces before en dash
+\xspaceremoveexception{-}
+\makeatletter
+\renewcommand*\@xspace@hook{%
+\ifx\@let@token-%
+\expandafter\@xspace@dash@i
+\fi
+}
+\def\@xspace@dash@i-{\futurelet\@let@token\@xspace@dash@ii}
+\def\@xspace@dash@ii{%
+\ifx\@let@token-%
+\else
+\unskip
+\fi
+-%
+}
+\makeatother
+
+
+% % from https://tex.stackexchange.com/questions/148579/tweak-showlabels-showkeys-wrap-the-label
+% \usepackage{showkeys}
+% \renewcommand*\showkeyslabelformat[1]{%
+%   \fbox{\parbox[t]{\marginparwidth}{\raggedright\normalfont\small\ttfamily#1}}}
+
+\usepackage[style=alphabetic,minnames=6,maxnames=6,maxalphanames=6]{biblatex}
+\bibliography{bib} 
+
+% to suppress 'p.'
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+
+\usepackage[small]{titlesec}
+
+% \input{macros-jonas.tex}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+
+\theorembodyfont{\upshape}
+\theoremsymbol{\ensuremath{\diamondsuit}}
+
+\newtheorem{definition}[theorem]{Definition}
+
+% \newtheorem{remark}[theorem]{Remark}
+
+\theorembodyfont{\normalfont}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remnot}[theorem]{Remark on notation}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{terminology}[theorem]{Terminology}
+\newtheorem{remarks}[theorem]{Remarks}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem{thought}[theorem]{Thought}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{conventions}[theorem]{Conventions}
+\newtheorem{void}[theorem]{$\!\!$}
+\newenvironment{blank}[1]%
+{\begin{void}\textbf{#1.}}%
+{\end{void}}
+
+\theoremsymbol{\ensuremath{_\blacksquare}}
+%\RequirePackage{amssymb}
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\newtheorem{proof}{Proof.}
+\newtheorem{eproof}{}
+\qedsymbol{\ensuremath{_\blacksquare}}
+
+% \theoremstyle{nonumberplain}
+\theorembodyfont{\itshape}
+\theoremheaderfont{\normalfont\bfseries}
+\newtheorem{theoremn}{Theorem}
+
+
+
+% by default description labels are bold, the following changes this
+\renewcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont #1}
+
+% https://tex.stackexchange.com/questions/1230/reference-name-of-description-list-item-in-latex
+\makeatletter
+\let\orgdescriptionlabel\descriptionlabel
+\renewcommand*{\descriptionlabel}[1]{%
+  \let\orglabel\label
+  \let\label\@gobble
+  \phantomsection
+  \edef\@currentlabel{#1}%
+  %\edef\@currentlabelname{#1}%
+  \let\label\orglabel
+  \orgdescriptionlabel{#1}%
+}
+\makeatother
+
+\hyphenation{Gro-then-dieck}
+\hyphenation{pseu-do-func-tor}
+\hyphenation{Kol-mo-go-rov}
+\hyphenation{pre-shea-ves}

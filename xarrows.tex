@@ -1,0 +1,57 @@
+% more extensible arrows: xepi and xepil
+\makeatletter
+\providecommand*{\twoheadrightarrowfill@}{%
+  \arrowfill@\relbar\relbar\twoheadrightarrow
+}
+\providecommand*{\twoheadleftarrowfill@}{%
+  \arrowfill@\twoheadleftarrow\relbar\relbar
+}
+\providecommand*{\xepi}[2][]{%
+  \ext@arrow 0579\twoheadrightarrowfill@{#1}{#2}%
+}
+\providecommand*{\xepil}[2][]{%
+  \ext@arrow 5097\twoheadleftarrowfill@{#1}{#2}%
+}
+\makeatother
+
+\makeatletter
+\newbox\xrat@below
+\newbox\xrat@above
+\newcommand{\xmono}[2][]{%
+  \setbox\xrat@below=\hbox{\ensuremath{\scriptstyle #1}}%
+  \setbox\xrat@above=\hbox{\ensuremath{\scriptstyle #2}}%
+  \pgfmathsetlengthmacro{\xrat@len}{max(\wd\xrat@below,\wd\xrat@above)+.6em}%
+  \mathrel{\tikz [>->,baseline=-.75ex]
+                 \draw (0,0) -- node[below=-2pt] {\box\xrat@below}
+                                node[above=-2pt] {\box\xrat@above}
+                       (\xrat@len,0) ;}}
+\makeatother
+
+
+
+
+% more extensible arrows: xleftleftarrows and xrightrightarrows
+\makeatletter
+\newcommand*{\relrelbarsep}{.386ex}
+\newcommand*{\relrelbar}{%
+  \mathrel{%
+    \mathpalette\@relrelbar\relrelbarsep
+  }%
+}
+\newcommand*{\@relrelbar}[2]{%
+  \raise#2\hbox to 0pt{$\m@th#1\relbar$\hss}%
+  \lower#2\hbox{$\m@th#1\relbar$}%
+}
+\providecommand*{\rightrightarrowsfill@}{%
+  \arrowfill@\relrelbar\relrelbar\rightrightarrows
+}
+\providecommand*{\leftleftarrowsfill@}{%
+  \arrowfill@\leftleftarrows\relrelbar\relrelbar
+}
+\providecommand*{\xrightrightarrows}[2][]{%
+  \ext@arrow 0359\rightrightarrowsfill@{#1}{#2}%
+}
+\providecommand*{\xleftleftarrows}[2][]{%
+  \ext@arrow 3095\leftleftarrowsfill@{#1}{#2}%
+}
+\makeatother
